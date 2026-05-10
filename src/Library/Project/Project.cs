@@ -1,4 +1,5 @@
-﻿using DigitalProduction.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DigitalProduction.ComponentModel;
 using DigitalProduction.Xml.Serialization;
 using System.Xml.Serialization;
 
@@ -7,8 +8,16 @@ namespace DigitalProduction.Projects;
 /// <summary>
 /// Base class for a Project.  Provides common functionality.
 /// </summary>
-public abstract class Project : NotifyPropertyModifiedChanged
+public abstract partial class Project : ObservableModifiedObject
 {
+	#region Fields
+
+	// Handling opening/creation methods and events.
+	protected CreationMethod	_creationMethod		= CreationMethod.Instantiated;
+	private const string		_projectFileName	= "Project.xml";
+
+	#endregion
+
 	#region Events
 
 	/// <summary>
@@ -25,22 +34,10 @@ public abstract class Project : NotifyPropertyModifiedChanged
 
 	#endregion
 
-	#region Fields
-
-	// Handling opening/creation methods and events.
-	private CreationMethod _creationMethod = CreationMethod.Instantiated;
-
-	/// <summary>Project description.</summary>
-	protected string _description = "";
-
-	private const string _projectFileName = "Project.xml";
-
-	#endregion
-
 	#region Construction
 
 	/// <summary>
-	/// Default constructor.
+	/// Constructor.
 	/// </summary>
 	protected Project(CompressionType compressionType)
 	{
@@ -104,7 +101,12 @@ public abstract class Project : NotifyPropertyModifiedChanged
 	/// Specifies if the project has been closed.
 	/// </summary>
 	[XmlIgnore()]
-	public bool IsClosed { get; private set; }
+	[ObservableProperty]
+	public partial bool IsOpen { get; set; } = false;
+
+
+	[ObservableProperty]
+	public partial bool ProjectOpen { get; set; } = false;
 
 	#endregion
 
@@ -127,8 +129,9 @@ public abstract class Project : NotifyPropertyModifiedChanged
 	/// <summary>
 	/// Access for manually firing event for external sources.
 	/// </summary>
-	private void OnOpened()
+	public virtual void Open()
 	{
+		IsOpen = true;
 		Opened?.Invoke();
 	}
 
@@ -137,7 +140,7 @@ public abstract class Project : NotifyPropertyModifiedChanged
 	/// </summary>
 	public virtual void Close()
 	{
-		IsClosed = true;
+		IsOpen = false;
 		Closed?.Invoke();
 	}
 
