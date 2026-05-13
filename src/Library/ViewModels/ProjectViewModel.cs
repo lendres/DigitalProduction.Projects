@@ -52,6 +52,7 @@ public partial class ProjectViewModel<T> : ObservableObject where T: Project
 
 	private void OnProjectOpenedChanged()
 	{
+		IsOpen = Project.IsOpen;
 		ValidateCanSave();
 	}
 
