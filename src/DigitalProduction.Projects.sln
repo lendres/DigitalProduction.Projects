@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.5.11716.220 stable
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalProduction.Project", "Library\DigitalProduction.Project.csproj", "{5A7564FB-F14A-40BB-B4B0-A055F9F7000E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalProduction.Projects", "Library\DigitalProduction.Projects.csproj", "{5A7564FB-F14A-40BB-B4B0-A055F9F7000E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unit Tests", "Unit Tests\Unit Tests.csproj", "{6A0D2F5B-2663-4C21-81D0-BFF092CCEFEF}"
 EndProject
