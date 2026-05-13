@@ -8,7 +8,7 @@ namespace DigitalProduction.Projects;
 /// <summary>
 /// Base class for a Project.  Provides common functionality.
 /// </summary>
-public abstract partial class Project : ObservableModifiedObject
+public abstract partial class Project : NotifyPropertyModifiedChanged
 {
 	#region Fields
 
@@ -101,12 +101,13 @@ public abstract partial class Project : ObservableModifiedObject
 	/// Specifies if the project has been closed.
 	/// </summary>
 	[XmlIgnore()]
-	[ObservableProperty]
-	public partial bool IsOpen { get; set; } = false;
+	public bool IsOpen { get; set; } = false;
 
-
-	[ObservableProperty]
-	public partial bool ProjectOpen { get; set; } = false;
+	/// <summary>
+	/// Specifies if the project has been closed.
+	/// </summary>
+	[XmlIgnore()]
+	public bool IsClosed { get => !IsOpen; }
 
 	#endregion
 
