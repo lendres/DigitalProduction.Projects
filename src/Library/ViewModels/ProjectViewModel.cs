@@ -66,6 +66,7 @@ public partial class ProjectViewModel<T> : ObservableObject where T: Project
 			Project					= project;
 			Project.ModifiedChanged	+= OnProjectModifiedChanged;
 			Project.Opened			+= OnProjectOpenedChanged;
+			Project.Closed			+= OnProjectOpenedChanged;
 		}
 	}
 

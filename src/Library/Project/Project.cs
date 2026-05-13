@@ -134,6 +134,7 @@ public abstract partial class Project : NotifyPropertyModifiedChanged
 	{
 		IsOpen = true;
 		Opened?.Invoke();
+		Modified = false;
 	}
 
 	/// <summary>
@@ -141,8 +142,9 @@ public abstract partial class Project : NotifyPropertyModifiedChanged
 	/// </summary>
 	public virtual void Close()
 	{
-		IsOpen = false;
 		Closed?.Invoke();
+		IsOpen		= false;
+		Modified	= false;
 	}
 
 	#endregion
